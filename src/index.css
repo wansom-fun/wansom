@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Lora", "Georgia", serif;
+  --font-mono: "Space Mono", monospace;
+
+  --color-paper: #fafaf9;
+  --color-paper-dark: #f5f5f4;
+  --color-ink: #0c0c0e;
+  --color-ink-light: #27272a;
+  --color-concrete: #e4e4e7;
+  --color-concrete-dark: #d4d4d8;
+  --color-brand-red: #dc2626;
+
+  --animate-scanline: scanline 12s linear infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbars - Minimalist editorial style */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-light);
+}
+
+/* Printed Blueprint Grid Backdrop */
+.glowing-grid {
+  background-image: 
+    linear-gradient(rgba(12, 12, 14, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(12, 12, 14, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center center;
+}
+
+/* Editorial Card Styles (Stark margins, hairline borders, flat look) */
+.editorial-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-ink);
+}
+
+/* Paper Terminal Ledger screen */
+.terminal-screen {
+  position: relative;
+  overflow: hidden;
+  background: #fcfcfb;
+  border: 1px solid var(--color-ink);
+}
+
+.terminal-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.03) 50%, rgba(255, 255, 255, 0.02) 50%);
+  z-index: 10;
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.scanline-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 12, 14, 0),
+    rgba(12, 12, 14, 0.02) 50%,
+    rgba(12, 12, 14, 0)
+  );
+  animation: var(--animate-scanline);
+  pointer-events: none;
+  z-index: 5;
+}
+
+
